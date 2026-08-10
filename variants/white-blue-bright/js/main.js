@@ -282,7 +282,7 @@ function initAmbientCanvas(reduceMotion) {
     ctx.clearRect(0, 0, W, H);
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
-    ctx.strokeStyle = 'rgba(47,111,216,.20)';
+    ctx.strokeStyle = 'rgba(192,57,43,.20)';
     ctx.lineWidth = 1.1;
     traces.forEach(function (tr) {
       ctx.beginPath();
@@ -297,13 +297,13 @@ function initAmbientCanvas(reduceMotion) {
       var glow = 0.35 + 0.3 * Math.sin(t * 0.0005 + i);
       if (v[2]) {
         ctx.beginPath();
-        ctx.strokeStyle = 'rgba(28,79,166,' + (glow * 0.7).toFixed(3) + ')';
+        ctx.strokeStyle = 'rgba(150,40,27,' + (glow * 0.7).toFixed(3) + ')';
         ctx.lineWidth = 1;
         ctx.arc(v[0], v[1], 3.4, 0, Math.PI * 2);
         ctx.stroke();
       }
       ctx.beginPath();
-      ctx.fillStyle = 'rgba(28,79,166,' + (glow * 0.6).toFixed(3) + ')';
+      ctx.fillStyle = 'rgba(150,40,27,' + (glow * 0.6).toFixed(3) + ')';
       ctx.arc(v[0], v[1], 1.3, 0, Math.PI * 2);
       ctx.fill();
     });
