@@ -31,9 +31,7 @@
   --shadow:0 20px 40px rgba(58,22,19,.08);
   --shadow-lg:0 28px 60px rgba(58,22,19,.14);
 
-  --font-serif:'Fraunces','Noto Serif KR',Georgia,'Batang',serif;
-  --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --font-kr:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-kr:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 *{box-sizing:border-box}
@@ -80,7 +78,7 @@ button{font-family:inherit;cursor:pointer}
 }
 .ticker-track{display:inline-flex;align-items:center;padding:9px 0;animation:tickerScroll 42s linear infinite}
 .ticker-track span{
-  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:var(--accent-bright);
+  font-size:11.5px;letter-spacing:.06em;color:var(--accent-bright);
   padding:0 28px;border-right:1px solid var(--line-strong);white-space:nowrap;
 }
 @keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -91,11 +89,11 @@ button{font-family:inherit;cursor:pointer}
 .section.alt{background:var(--bg-elevated)}
 .section-head{max-width:640px;margin:0 auto 52px;text-align:center}
 .eyebrow{
-  display:inline-block;font-family:var(--font-mono);
+  display:inline-block;
   font-size:12.5px;font-weight:600;letter-spacing:.18em;
   color:var(--accent-bright);text-transform:uppercase;margin-bottom:14px;
 }
-.section-head h2{font-family:var(--font-serif);font-size:34px;font-weight:600;color:var(--fg);letter-spacing:-.01em}
+.section-head h2{font-size:34px;font-weight:800;color:var(--fg);letter-spacing:-.01em}
 .section-head p{margin-top:14px;color:var(--muted);font-size:16px}
 .section-head.left{text-align:left;margin-left:0}
 
@@ -116,17 +114,17 @@ button{font-family:inherit;cursor:pointer}
 .brand img{height:32px;width:auto;filter:drop-shadow(0 0 10px rgba(192,57,43,.18))}
 .menu{display:flex;align-items:center;gap:34px}
 .menu a{
-  font-family:var(--font-mono);font-size:13px;font-weight:500;letter-spacing:.04em;
+  font-size:14.5px;font-weight:500;letter-spacing:0;
   color:var(--fg);white-space:nowrap;position:relative;padding:4px 0;
 }
 .menu a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--accent);transition:width .2s}
 .menu a:hover::after{width:100%}
 .nav-actions{display:flex;align-items:center;gap:14px}
-.tel-link{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-weight:600;color:var(--accent-bright);font-size:14px}
+.tel-link{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--accent-bright);font-size:14px}
 .tel-link svg{flex:none}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:12px 22px;border-radius:2px;font-family:var(--font-mono);font-weight:600;font-size:13.5px;
+  padding:12px 22px;border-radius:2px;font-weight:600;font-size:13.5px;
   letter-spacing:.03em;border:1px solid transparent;
   transition:transform .15s, box-shadow .15s, background .2s, color .2s, border-color .2s;
 }
@@ -158,8 +156,8 @@ button{font-family:inherit;cursor:pointer}
 }
 .hero-inner{padding:130px 0 84px;max-width:720px;position:relative;z-index:2}
 .hero .eyebrow{color:var(--accent-bright)}
-.hero h1{font-family:var(--font-serif);font-size:48px;line-height:1.28;font-weight:600;letter-spacing:-.01em}
-.hero h1 b{color:var(--accent-bright);font-weight:600;font-style:italic}
+.hero h1{font-size:48px;line-height:1.28;font-weight:800;letter-spacing:-.01em}
+.hero h1 b{color:var(--accent-bright);font-weight:800}
 .hero p{margin-top:22px;font-size:17px;color:var(--muted);max-width:560px}
 .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
 .hero-line{margin-top:34px;opacity:.85}
@@ -173,25 +171,25 @@ button{font-family:inherit;cursor:pointer}
 .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:34px 0}
 .trust-item{text-align:center;border-left:1px solid var(--line-strong)}
 .trust-item:first-child{border-left:none}
-.trust-num{font-family:var(--font-serif);font-size:27px;font-weight:600;color:var(--accent-bright)}
-.trust-label{margin-top:6px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.03em;color:var(--muted)}
+.trust-num{font-size:27px;font-weight:800;color:var(--accent-bright)}
+.trust-label{margin-top:6px;font-size:11.5px;letter-spacing:.03em;color:var(--muted)}
 
 /* ---------- 통계 카운트업 / 디코드 ---------- */
 .stat-num{font-variant-numeric:tabular-nums}
 
 /* ---------- 회사개요 ---------- */
 .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
-.about-copy h3{font-family:var(--font-serif);font-size:24px;font-weight:600;color:var(--fg);line-height:1.55}
+.about-copy h3{font-size:24px;font-weight:800;color:var(--fg);line-height:1.55}
 .about-copy p{margin-top:18px;color:var(--muted);font-size:15.5px}
 .info-table{margin-top:28px;border-top:1px solid var(--line-strong)}
 .info-table div{display:flex;border-bottom:1px solid var(--line)}
-.info-table dt{flex:0 0 130px;padding:13px 0;font-family:var(--font-mono);font-size:12.5px;font-weight:600;letter-spacing:.03em;color:var(--accent-bright);}
+.info-table dt{flex:0 0 130px;padding:13px 0;font-size:12.5px;font-weight:600;letter-spacing:.03em;color:var(--accent-bright);}
 .info-table dd{flex:1;margin:0;padding:13px 0;font-size:14.5px;color:var(--fg)}
 
 .value-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
 .value-card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow);transition:border-color .2s}
 .value-card:hover{border-color:var(--line-strong)}
-.value-card .tag{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--accent-bright);letter-spacing:.12em;margin-bottom:10px}
+.value-card .tag{display:inline-block;font-size:11px;font-weight:600;color:var(--accent-bright);letter-spacing:.12em;margin-bottom:10px}
 .value-card h4{font-size:16.5px;font-weight:700;color:var(--fg)}
 .value-card p{margin-top:8px;font-size:14px;color:var(--muted)}
 .value-card ul{margin-top:10px}
@@ -205,7 +203,7 @@ button{font-family:inherit;cursor:pointer}
   content:"";position:absolute;left:-6px;top:6px;width:9px;height:9px;border-radius:50%;
   background:var(--accent);box-shadow:0 0 0 4px rgba(192,57,43,.18);
 }
-.tl-year{font-family:var(--font-serif);font-size:21px;font-weight:600;color:var(--accent-bright)}
+.tl-year{font-size:21px;font-weight:800;color:var(--accent-bright)}
 .tl-item p{margin-top:6px;font-size:14.5px;color:var(--muted)}
 .tl-item p+p{margin-top:2px}
 
@@ -231,19 +229,19 @@ button{font-family:inherit;cursor:pointer}
 .cert-card .badge{
   width:54px;height:54px;margin:0 auto 14px;border-radius:50%;
   border:1px solid var(--line-strong);color:var(--accent-bright);
-  display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:600;font-size:13px;letter-spacing:.02em;
+  display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;letter-spacing:.02em;
 }
 .cert-card h4{font-size:14.5px;font-weight:700;color:var(--fg)}
-.cert-card .num{margin-top:6px;font-family:var(--font-mono);font-size:12px;color:var(--muted)}
-.cert-card .date{margin-top:2px;font-family:var(--font-mono);font-size:11.5px;color:var(--muted-2)}
+.cert-card .num{margin-top:6px;font-size:12px;color:var(--muted)}
+.cert-card .date{margin-top:2px;font-size:11.5px;color:var(--muted-2)}
 
 .finance-strip{
   margin-top:56px;background:var(--bg-elevated);border:1px solid var(--line-strong);border-radius:20px;
   padding:40px 44px;color:var(--fg);display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
 }
 .finance-item{text-align:center}
-.finance-num{font-family:var(--font-serif);font-size:25px;font-weight:600;color:var(--accent-bright)}
-.finance-label{margin-top:6px;font-family:var(--font-mono);font-size:11.5px;color:var(--muted)}
+.finance-num{font-size:25px;font-weight:800;color:var(--accent-bright)}
+.finance-label{margin-top:6px;font-size:11.5px;color:var(--muted)}
 
 /* ---------- 포트폴리오 ---------- */
 .pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -270,28 +268,28 @@ button{font-family:inherit;cursor:pointer}
 .pf-card:hover .pf-thumb img{transform:scale(1.06)}
 .pf-body{padding:20px 22px 24px}
 .pf-cat{
-  display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:600;
-  color:var(--accent-bright);border:1px solid var(--line-strong);padding:4px 10px;letter-spacing:.05em;
+  display:inline-block;font-size:11.5px;font-weight:700;
+  color:var(--accent-bright);border:1px solid var(--line-strong);padding:4px 10px;
 }
 .pf-body h4{margin-top:12px;font-size:16px;font-weight:700;color:var(--fg);line-height:1.4}
-.pf-meta{margin-top:8px;font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+.pf-meta{margin-top:8px;font-size:12px;color:var(--muted)}
 
 /* ---------- 실적현황 ---------- */
 .tabs{display:flex;justify-content:center;gap:10px;margin-bottom:34px}
 .tab-btn{
   padding:11px 26px;border-radius:2px;border:1px solid var(--line-strong);background:var(--bg-card);
-  font-family:var(--font-mono);font-weight:600;font-size:13px;letter-spacing:.04em;color:var(--muted);transition:all .2s;
+  font-weight:700;font-size:13.5px;letter-spacing:0;color:var(--muted);transition:all .2s;
 }
 .tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .table-wrap{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--bg-card)}
 .table-scroll{max-height:480px;overflow-y:auto}
-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:13.5px}
+table{width:100%;border-collapse:collapse;font-size:14px}
 thead th{
   position:sticky;top:0;background:var(--bg-elevated);color:var(--accent-bright);text-align:left;
-  padding:14px 20px;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;z-index:2;
+  padding:14px 20px;font-weight:700;font-size:12.5px;z-index:2;
   border-bottom:1px solid var(--line-strong);
 }
-tbody td{padding:13px 20px;border-bottom:1px solid var(--line);color:var(--fg)}
+tbody td{padding:13px 20px;border-bottom:1px solid var(--line);color:var(--fg);font-weight:600}
 tbody tr:hover{background:rgba(192,57,43,.05)}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
@@ -302,10 +300,10 @@ tbody tr:hover{background:rgba(192,57,43,.05)}
 .loc-card:hover{border-color:var(--line-strong)}
 .loc-map{aspect-ratio:16/10;border:none;width:100%;display:block;background:var(--bg-elevated)}
 .loc-body{padding:22px}
-.loc-body .tag{font-family:var(--font-mono);font-size:11.5px;font-weight:600;color:var(--accent-bright);letter-spacing:.06em}
+.loc-body .tag{font-size:11.5px;font-weight:600;color:var(--accent-bright);letter-spacing:.06em}
 .loc-body h4{margin-top:6px;font-size:17px;font-weight:700;color:var(--fg)}
 .loc-body address{margin-top:8px;font-style:normal;font-size:14px;color:var(--muted)}
-.loc-body a.map-link{display:inline-block;margin-top:12px;font-family:var(--font-mono);font-size:12.5px;font-weight:600;color:var(--accent-bright)}
+.loc-body a.map-link{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:600;color:var(--accent-bright)}
 .loc-body a.map-link:hover{text-decoration:underline}
 
 .contact-cta{
@@ -313,7 +311,7 @@ tbody tr:hover{background:rgba(192,57,43,.05)}
   border:1px solid var(--line-strong);
   border-radius:20px;padding:52px 56px;color:var(--fg);display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
 }
-.contact-cta h3{font-family:var(--font-serif);font-size:25px;font-weight:600}
+.contact-cta h3{font-size:25px;font-weight:800}
 .contact-cta p{margin-top:10px;color:var(--muted);font-size:15px}
 .contact-cta .cc-actions{display:flex;gap:12px;flex-wrap:wrap}
 
@@ -328,7 +326,7 @@ tbody tr:hover{background:rgba(192,57,43,.05)}
 .consult-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
 .consult-form .form-row .field{margin-bottom:0}
-.field label{font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-bright)}
+.field label{font-size:12.5px;font-weight:700;color:var(--accent-bright)}
 .field input,.field select,.field textarea{
   border:1px solid var(--line-strong);border-radius:2px;padding:12px 14px;
   font-size:14.5px;font-family:var(--font-kr);color:var(--fg);background:var(--bg-card-2);
@@ -341,7 +339,7 @@ tbody tr:hover{background:rgba(192,57,43,.05)}
 .field textarea{resize:vertical}
 .consult-submit-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:6px}
 .consult-note{font-size:12.5px;color:var(--muted-2)}
-.consult-status{margin-top:14px;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--accent-bright);min-height:20px}
+.consult-status{margin-top:14px;font-size:13px;font-weight:600;color:var(--accent-bright);min-height:20px}
 .consult-status.error{color:var(--error)}
 .consult-status.success{color:var(--success)}
 
@@ -355,16 +353,16 @@ tbody tr:hover{background:rgba(192,57,43,.05)}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
 .footer-brand img{height:28px;margin-bottom:14px}
 .footer-brand p{font-size:13.5px;line-height:1.8;color:var(--muted-2)}
-.footer-col h5{color:var(--accent-bright);font-family:var(--font-mono);font-size:12.5px;letter-spacing:.06em;font-weight:600;margin-bottom:16px;text-transform:uppercase}
+.footer-col h5{color:var(--accent-bright);font-size:13px;font-weight:700;margin-bottom:16px;}
 .footer-col li{font-size:13.5px;padding:5px 0;color:var(--muted)}
 .footer-col a:hover{color:var(--accent-bright)}
-.footer-bottom{margin-top:44px;padding-top:24px;border-top:1px solid var(--line-strong);font-family:var(--font-mono);font-size:11.5px;color:var(--muted-2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.footer-bottom{margin-top:44px;padding-top:24px;border-top:1px solid var(--line-strong);font-size:11.5px;color:var(--muted-2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
 /* ---------- 카카오톡 상담 플로팅 버튼 ---------- */
 .kakao-float{
   position:fixed;right:24px;bottom:24px;z-index:200;
   display:flex;align-items:center;gap:8px;
-  background:#FEE500;color:#391B1B;font-family:var(--font-mono);font-weight:700;font-size:13.5px;
+  background:#FEE500;color:#391B1B;font-weight:700;font-size:13.5px;
   padding:14px 20px 14px 16px;border-radius:2px;
   box-shadow:0 14px 30px rgba(58,22,19,.22);
   transition:transform .18s, box-shadow .18s;
