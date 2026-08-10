@@ -217,32 +217,52 @@ function initMagneticButtons(reduceMotion) {
   });
 }
 
-/* 앰비언트 캔버스 배경 — 얇은 회로도 트레이스 라인 + 노드 (전기공사 아이덴티티) */
+/* 앰비언트 캔버스 배경 — 실제 회로기판(PCB) 배선처럼 그리드에 맞춘 트레이스 + 비아 패드 (전기공사 아이덴티티) */
 function initAmbientCanvas(reduceMotion) {
   var canvas = document.getElementById('bgCanvas');
   if (!canvas || !canvas.getContext) return;
   var ctx = canvas.getContext('2d');
   var W, H, dpr;
+  var GRID = 26;
   var traces = [];
+  var vias = []; // [x, y, isPad]
 
   function buildTraces() {
     traces = [];
-    var cols = Math.max(4, Math.round(W / 260));
-    var rows = Math.max(4, Math.round(H / 220));
-    var count = Math.min(26, Math.round((cols * rows) / 3));
+    vias = [];
+    var cols = Math.ceil(W / GRID);
+    var rows = Math.ceil(H / GRID);
+    var count = Math.min(70, Math.max(26, Math.round((cols * rows) / 26)));
+    var dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+
     for (var i = 0; i < count; i++) {
-      var x = Math.random() * W;
-      var y = Math.random() * H;
+      var gx = Math.floor(Math.random() * cols) * GRID;
+      var gy = Math.floor(Math.random() * rows) * GRID;
+      var x = gx, y = gy;
       var pts = [[x, y]];
-      var segs = 2 + Math.floor(Math.random() * 3);
+      var lastDir = dirs[Math.floor(Math.random() * 4)];
+      var segs = 3 + Math.floor(Math.random() * 4);
+
       for (var s = 0; s < segs; s++) {
-        var horizontal = Math.random() > 0.5;
-        var len = 60 + Math.random() * 160;
-        if (horizontal) x += (Math.random() > 0.5 ? 1 : -1) * len;
-        else y += (Math.random() > 0.5 ? 1 : -1) * len;
-        pts.push([x, y]);
+        var dir = Math.random() < 0.4 ? lastDir : dirs[Math.floor(Math.random() * 4)];
+        var steps = 1 + Math.floor(Math.random() * 5);
+        var nx = Math.max(0, Math.min(W, x + dir[0] * GRID * steps));
+        var ny = Math.max(0, Math.min(H, y + dir[1] * GRID * steps));
+        if (nx === x && ny === y) continue;
+
+        // 45도 모따기 코너 (실제 PCB 배선처럼)
+        if ((dir[0] !== lastDir[0] || dir[1] !== lastDir[1]) && pts.length) {
+          var chamfer = Math.min(GRID * 0.7, 14);
+          pts.push([x + lastDir[0] * chamfer, y + lastDir[1] * chamfer]);
+          pts.push([nx - dir[0] * chamfer, ny - dir[1] * chamfer]);
+        }
+        pts.push([nx, ny]);
+        vias.push([nx, ny, Math.random() < 0.35]);
+        x = nx; y = ny; lastDir = dir;
       }
-      traces.push({ pts: pts, phase: Math.random() * Math.PI * 2, speed: 0.4 + Math.random() * 0.5 });
+      if (pts.length > 1) {
+        traces.push({ pts: pts, phase: Math.random() * Math.PI * 2, speed: 0.3 + Math.random() * 0.4 });
+      }
     }
   }
 
@@ -260,8 +280,10 @@ function initAmbientCanvas(reduceMotion) {
 
   function draw(t) {
     ctx.clearRect(0, 0, W, H);
-    ctx.strokeStyle = 'rgba(201,163,92,.22)';
-    ctx.lineWidth = 1;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'rgba(201,163,92,.24)';
+    ctx.lineWidth = 1.1;
     traces.forEach(function (tr) {
       ctx.beginPath();
       tr.pts.forEach(function (p, idx) {
@@ -269,14 +291,21 @@ function initAmbientCanvas(reduceMotion) {
         else ctx.lineTo(p[0], p[1]);
       });
       ctx.stroke();
+    });
 
-      var glow = 0.35 + 0.35 * Math.sin(t * 0.0006 * tr.speed + tr.phase);
-      tr.pts.forEach(function (p) {
+    vias.forEach(function (v, i) {
+      var glow = 0.35 + 0.3 * Math.sin(t * 0.0005 + i);
+      if (v[2]) {
         ctx.beginPath();
-        ctx.fillStyle = 'rgba(233,201,138,' + glow.toFixed(3) + ')';
-        ctx.arc(p[0], p[1], 2, 0, Math.PI * 2);
-        ctx.fill();
-      });
+        ctx.strokeStyle = 'rgba(233,201,138,' + (glow * 0.7).toFixed(3) + ')';
+        ctx.lineWidth = 1;
+        ctx.arc(v[0], v[1], 3.4, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(233,201,138,' + (glow * 0.6).toFixed(3) + ')';
+      ctx.arc(v[0], v[1], 1.3, 0, Math.PI * 2);
+      ctx.fill();
     });
   }
 
