@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>(주)삼화이엔지 홈페이지 — 디자인 시안 비교</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",-apple-system,sans-serif;background:#f2f4f8;color:#1a2436}
+  header{padding:56px 24px 32px;text-align:center}
+  header h1{font-size:26px;font-weight:800;margin:0 0 10px}
+  header p{color:#5b6472;font-size:15px;margin:0}
+  .grid{max-width:1100px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  @media (max-width:800px){.grid{grid-template-columns:1fr}}
+  .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(16,30,60,.08);border:1px solid #e6e9ef;display:flex;flex-direction:column}
+  .swatch{height:120px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .swatch span{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.6) inset}
+  .sw-current{background:linear-gradient(120deg,#e8f1fb,#0f2d63)}
+  .sw-gold{background:linear-gradient(120deg,#0a0d12,#c9a35c)}
+  .sw-navy{background:linear-gradient(120deg,#060c18,#5b8fd6)}
+  .sw-bright{background:linear-gradient(120deg,#f6f9fd,#2f6fd8)}
+  .body{padding:22px 24px 26px;flex:1;display:flex;flex-direction:column}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;color:#2f6fd8;background:#e8f1fb;padding:4px 10px;border-radius:999px;margin-bottom:10px;width:fit-content}
+  .tag.now{color:#0f2d63;background:#dce9fa}
+  .body h3{margin:0 0 8px;font-size:18px;font-weight:800}
+  .body p{margin:0 0 18px;font-size:13.5px;line-height:1.7;color:#5b6472;flex:1}
+  .body a{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#0f2d63;color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:8px;transition:background .15s}
+  .body a:hover{background:#123a7d}
+  footer{text-align:center;padding-bottom:60px;color:#8b93a3;font-size:12.5px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>(주)삼화이엔지 홈페이지 — 디자인 시안 비교</h1>
+  <p>4가지 색감/톤 버전을 각각 링크로 열어 비교할 수 있습니다. 기능(상담폼, 실적표, 지도, 카카오 버튼)은 모든 버전에서 동일합니다.</p>
+</header>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="swatch sw-current"><span style="background:#e8f1fb"></span><span style="background:#0f2d63"></span><span style="background:#2f6fd8"></span></div>
+    <div class="body">
+      <span class="tag now">현재 최종안</span>
+      <h3>화이트 블루 + 딥블루 포인트</h3>
+      <p>밝은 라이트블루 배경에 헤더·푸터·통계밴드만 진한 딥블루로 포인트를 준 버전. 폰트는 맑은 고딕으로 통일. 가장 최근에 다듬은 버전입니다.</p>
+      <a href="index.html" target="_blank">이 버전 보기 →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch sw-bright"><span style="background:#f6f9fd"></span><span style="background:#2f6fd8"></span><span style="background:#1c4fa6"></span></div>
+    <div class="body">
+      <span class="tag">이전 시안</span>
+      <h3>화이트 블루 (밝은 톤)</h3>
+      <p>전체적으로 밝은 화이트·라이트블루 톤. 세리프+모노스페이스 폰트 조합 사용. "너무 환하다"는 피드백 이전 버전입니다.</p>
+      <a href="variants/white-blue-bright/index.html" target="_blank">이 버전 보기 →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch sw-navy"><span style="background:#060c18"></span><span style="background:#5b8fd6"></span><span style="background:#8fb8ea"></span></div>
+    <div class="body">
+      <span class="tag">이전 시안</span>
+      <h3>다크 럭셔리 · 네이비블루</h3>
+      <p>딥네이비 블랙 배경 + 블루 악센트, 에디토리얼 세리프(Fraunces)+모노스페이스(IBM Plex Mono) 폰트. 야간 트레이딩 터미널 컨셉을 전기공사 회사에 맞게 재해석한 버전.</p>
+      <a href="variants/dark-navy-blue/index.html" target="_blank">이 버전 보기 →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch sw-gold"><span style="background:#0a0d12"></span><span style="background:#c9a35c"></span><span style="background:#e9c98a"></span></div>
+    <div class="body">
+      <span class="tag">이전 시안</span>
+      <h3>다크 럭셔리 · 골드</h3>
+      <p>그래파이트 블랙 배경 + 브론즈골드 악센트, 로고의 오렌지 톤과 이어지는 첫 다크 럭셔리 버전입니다.</p>
+      <a href="variants/dark-gold/index.html" target="_blank">이 버전 보기 →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>각 링크는 새 탭에서 열립니다 · 로고는 모든 버전에서 최신 로고로 통일되어 있습니다</footer>
+
+</body>
+</html>
