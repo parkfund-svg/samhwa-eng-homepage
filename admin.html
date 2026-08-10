@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>상담신청 관리자 - (주)삼화이엔지</title>
+<style>
+  :root{
+    --navy:#0c1c3f; --navy-2:#123067; --orange:#e2572c; --line:#e6e9ef;
+    --bg:#f5f7fb; --ink:#1b2130; --gray:#5c6474;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Pretendard","Malgun Gothic",-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--ink)}
+  .wrap{max-width:1200px;margin:0 auto;padding:40px 24px}
+  header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:28px}
+  h1{font-size:22px;color:var(--navy);font-weight:800}
+  .btn{border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:14px;cursor:pointer}
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--navy)}
+
+  #loginBox{max-width:360px;margin:80px auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px;text-align:center;box-shadow:0 10px 30px rgba(12,28,63,.08)}
+  #loginBox input{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;font-size:14px;margin:16px 0}
+  #loginBox p.err{color:#c0392b;font-size:13px;min-height:18px}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+  .stat-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .stat-card h3{margin:0 0 6px;font-size:13px;color:var(--gray);font-weight:700}
+  .stat-card .num{font-size:26px;font-weight:800;color:var(--navy)}
+
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  th{background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:13px}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:top}
+  tr:hover td{background:#fdf1ec}
+  .empty{padding:60px 20px;text-align:center;color:var(--gray)}
+  .table-scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+
+<div id="loginBox">
+  <h1 style="margin-bottom:6px">상담신청 관리자</h1>
+  <p style="color:var(--gray);font-size:13.5px;margin:0">비밀번호를 입력하세요</p>
+  <input id="pwInput" type="password" placeholder="비밀번호" />
+  <button class="btn btn-primary" style="width:100%" onclick="login()">로그인</button>
+  <p class="err" id="loginErr"></p>
+</div>
+
+<div class="wrap" id="dashboard" style="display:none">
+  <header>
+    <h1>(주)삼화이엔지 · 상담신청 관리</h1>
+    <div>
+      <button class="btn btn-ghost" onclick="load()">새로고침</button>
+      <button class="btn btn-ghost" onclick="logout()">로그아웃</button>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat-card"><h3>전체 신청 건수</h3><div class="num" id="statTotal">-</div></div>
+    <div class="stat-card"><h3>오늘 신청</h3><div class="num" id="statToday">-</div></div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>접수일시</th><th>이름</th><th>연락처</th><th>이메일</th><th>공사분야</th><th>문의내용</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="emptyMsg" style="display:none">아직 접수된 상담 신청이 없습니다.</div>
+</div>
+
+<script>
+  // gas/backend-apps-script.js 배포 후 발급되는 웹앱 URL을 여기에 붙여넣으세요.
+  const WEBHOOK_URL = '';
+  const SESSION_KEY = 'samhwaAdminAuthed';
+
+  const loginBox = document.getElementById('loginBox');
+  const dashboard = document.getElementById('dashboard');
+
+  function login() {
+    const pw = document.getElementById('pwInput').value;
+    if (!pw) return;
+    sessionStorage.setItem(SESSION_KEY, pw);
+    load();
+  }
+
+  function logout() {
+    sessionStorage.removeItem(SESSION_KEY);
+    loginBox.style.display = 'block';
+    dashboard.style.display = 'none';
+  }
+
+  async function load() {
+    const pw = sessionStorage.getItem(SESSION_KEY);
+    if (!pw) return;
+
+    if (!WEBHOOK_URL) {
+      document.getElementById('loginErr').textContent = 'WEBHOOK_URL이 설정되지 않았습니다. gas/상담신청_설정가이드.md 를 참고해 주세요.';
+      return;
+    }
+
+    try {
+      const res = await fetch(`${WEBHOOK_URL}?action=getSubmissions&password=${encodeURIComponent(pw)}`);
+      const result = await res.json();
+
+      if (!result.success) {
+        document.getElementById('loginErr').textContent = result.error || '조회에 실패했습니다.';
+        return;
+      }
+
+      loginBox.style.display = 'none';
+      dashboard.style.display = 'block';
+      render(result.data || []);
+    } catch (err) {
+      document.getElementById('loginErr').textContent = '서버 연결에 실패했습니다: ' + err.message;
+    }
+  }
+
+  function render(list) {
+    document.getElementById('statTotal').textContent = list.length;
+    const todayStr = new Date().toLocaleDateString('ko-KR');
+    const todayCount = list.filter(s => (s.ts || '').startsWith(todayStr.slice(0, 4))).length;
+    document.getElementById('statToday').textContent = list.filter(function (s) {
+      const d = new Date(s.ts);
+      const now = new Date();
+      return d.toDateString() === now.toDateString();
+    }).length;
+
+    const rows = document.getElementById('rows');
+    const emptyMsg = document.getElementById('emptyMsg');
+
+    if (!list.length) {
+      rows.innerHTML = '';
+      emptyMsg.style.display = 'block';
+      return;
+    }
+    emptyMsg.style.display = 'none';
+
+    rows.innerHTML = list.map(function (s) {
+      return `<tr>
+        <td>${s.ts || ''}</td>
+        <td>${s.name || ''}</td>
+        <td>${s.phone || ''}</td>
+        <td>${s.email || ''}</td>
+        <td>${s.field || ''}</td>
+        <td>${(s.message || '').replace(/</g, '&lt;')}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // 세션이 남아있으면 자동 로그인
+  if (sessionStorage.getItem(SESSION_KEY)) {
+    load();
+  }
+</script>
+</body>
+</html>
