@@ -144,6 +144,32 @@ document.addEventListener('DOMContentLoaded', function () {
     stIo.observe(group);
   });
 
+  // 증명서 라이트박스
+  var lightbox = document.getElementById('certLightbox');
+  if (lightbox) {
+    var lbImg = document.getElementById('lightboxImg');
+    var lbCaption = document.getElementById('lightboxCaption');
+    var lbClose = document.getElementById('lightboxClose');
+    document.querySelectorAll('[data-lightbox]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        lbImg.src = el.getAttribute('data-lightbox');
+        lbImg.alt = el.getAttribute('data-lightbox-title') || '';
+        lbCaption.textContent = el.getAttribute('data-lightbox-title') || '';
+        lightbox.classList.add('open');
+      });
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+    }
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+
   initCountUp();
 });
 

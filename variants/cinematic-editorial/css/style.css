@@ -174,14 +174,25 @@ button{font-family:inherit;cursor:pointer}
 .biz-card p{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
 
 /* ---------- 면허/인증 ---------- */
-.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong)}
-.cert-card{background:var(--bg-card);padding:34px 24px;text-align:center;position:relative;transition:transform .25s, box-shadow .25s;z-index:1}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong)}
+.cert-card{background:var(--bg-card);position:relative;cursor:pointer;transition:transform .25s, box-shadow .25s;z-index:1}
 .cert-card:hover{transform:translateY(-6px);box-shadow:0 20px 34px rgba(10,10,10,.08);z-index:2}
-.cert-card .badge{width:52px;height:52px;margin:0 auto 16px;border-radius:50%;border:1px solid var(--line-strong);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;transition:border-color .25s, background .25s, color .25s}
-.cert-card:hover .badge{border-color:var(--accent);background:var(--accent-soft)}
-.cert-card h4{font-size:14.5px;font-weight:700;color:var(--fg)}
-.cert-card .num{margin-top:8px;font-size:12px;color:var(--muted)}
-.cert-card .date{margin-top:2px;font-size:11.5px;color:var(--muted-2)}
+.cert-thumb{aspect-ratio:4/3;overflow:hidden;background:var(--bg-elevated);border-bottom:1px solid var(--line)}
+.cert-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s}
+.cert-card:hover .cert-thumb img{transform:scale(1.05)}
+.cert-body{padding:20px 22px 24px;text-align:center}
+.cert-body h4{font-size:14.5px;font-weight:700;color:var(--fg)}
+.cert-body .num{margin-top:8px;font-size:12px;color:var(--muted)}
+.cert-body .date{margin-top:2px;font-size:11.5px;color:var(--muted-2)}
+
+/* ---------- 증명서 라이트박스 ---------- */
+.lightbox{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:40px 20px;background:rgba(10,10,10,.86);opacity:0;pointer-events:none;transition:opacity .25s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox-figure{margin:0;max-width:560px;max-height:88vh;display:flex;flex-direction:column;align-items:center;gap:14px}
+.lightbox-figure img{max-width:100%;max-height:78vh;object-fit:contain;background:#fff;border-radius:4px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.lightbox-figure figcaption{color:#fff;font-size:13.5px;font-weight:600;letter-spacing:.02em}
+.lightbox-close{position:absolute;top:24px;right:28px;background:none;border:none;color:#fff;opacity:.8;cursor:pointer;padding:8px}
+.lightbox-close:hover{opacity:1}
 
 .finance-strip{margin-top:1px;background:var(--fg);padding:52px 44px;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .finance-item{text-align:center}

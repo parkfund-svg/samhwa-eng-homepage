@@ -73,10 +73,30 @@
         <p>전기공사업 · 전문소방시설공사업 · 정보통신설비공사업 3개 면허를 보유하고 있습니다.</p>
       </div>
       <div class="cert-grid" data-reveal-stagger>
-        <div class="cert-card"><div class="badge">전기</div><h4>전기공사업</h4><div class="num">제 충남-01150호</div><div class="date">등록일 2016.04.05</div></div>
-        <div class="cert-card"><div class="badge">소방</div><h4>소방시설공사업</h4><div class="num">제 2020-02-00302호</div><div class="date">등록일 2020.06.03</div></div>
-        <div class="cert-card"><div class="badge">통신</div><h4>정보통신설비공사업</h4><div class="num">제 410432호</div><div class="date">등록일 2026.03.03</div></div>
-        <div class="cert-card"><div class="badge">ISO</div><h4>ISO 45001</h4><div class="num">안전보건경영시스템</div><div class="date">2026년 인증취득</div></div>
+        <div class="cert-card" data-lightbox="assets/img/cert_business_reg.jpg" data-lightbox-title="사업자등록증">
+          <div class="cert-thumb"><img src="assets/img/cert_business_reg.jpg" alt="사업자등록증" loading="lazy" /></div>
+          <div class="cert-body"><h4>사업자등록증</h4><div class="num">등록번호 875-86-00316</div><div class="date">법인사업자</div></div>
+        </div>
+        <div class="cert-card" data-lightbox="assets/img/cert_electrical.jpg" data-lightbox-title="전기공사업 등록증">
+          <div class="cert-thumb"><img src="assets/img/cert_electrical.jpg" alt="전기공사업 등록증" loading="lazy" /></div>
+          <div class="cert-body"><h4>전기공사업</h4><div class="num">제 충남-01150호</div><div class="date">등록일 2016.04.05</div></div>
+        </div>
+        <div class="cert-card" data-lightbox="assets/img/cert_fire.jpg" data-lightbox-title="소방시설업 등록증">
+          <div class="cert-thumb"><img src="assets/img/cert_fire.jpg" alt="소방시설업 등록증" loading="lazy" /></div>
+          <div class="cert-body"><h4>소방시설공사업</h4><div class="num">제 2020-02-00302호</div><div class="date">등록일 2020.06.03</div></div>
+        </div>
+        <div class="cert-card" data-lightbox="assets/img/cert_telecom.jpg" data-lightbox-title="정보통신공사업 등록증">
+          <div class="cert-thumb"><img src="assets/img/cert_telecom.jpg" alt="정보통신공사업 등록증" loading="lazy" /></div>
+          <div class="cert-body"><h4>정보통신설비공사업</h4><div class="num">제 410432호</div><div class="date">등록일 2026.03.03</div></div>
+        </div>
+        <div class="cert-card" data-lightbox="assets/img/cert_overseas.jpg" data-lightbox-title="해외건설업 신고확인증">
+          <div class="cert-thumb"><img src="assets/img/cert_overseas.jpg" alt="해외건설업 신고확인증" loading="lazy" /></div>
+          <div class="cert-body"><h4>해외건설업 신고확인증</h4><div class="num">제 2324호</div><div class="date">전기공사업 · 국내 해외건설협회</div></div>
+        </div>
+        <div class="cert-card" data-lightbox="assets/img/cert_iso45001.jpg" data-lightbox-title="ISO 45001 인증서">
+          <div class="cert-thumb"><img src="assets/img/cert_iso45001.jpg" alt="ISO 45001 인증서" loading="lazy" /></div>
+          <div class="cert-body"><h4>ISO 45001</h4><div class="num">안전보건경영시스템</div><div class="date">인증만료 2029.03.04</div></div>
+        </div>
       </div>
 
       <div class="finance-strip" data-reveal>
@@ -89,6 +109,16 @@
   </section>
 
 </main>
+
+<div class="lightbox" id="certLightbox" role="dialog" aria-modal="true" aria-label="증명서 확대보기">
+  <button class="lightbox-close" id="lightboxClose" aria-label="닫기">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <figure class="lightbox-figure">
+    <img id="lightboxImg" src="" alt="" />
+    <figcaption id="lightboxCaption"></figcaption>
+  </figure>
+</div>
 
 <footer class="site-footer">
   <div class="container footer-grid">
