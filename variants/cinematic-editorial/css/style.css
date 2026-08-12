@@ -93,7 +93,8 @@ button{font-family:inherit;cursor:pointer}
 
 /* ---------- 히어로 ---------- */
 .hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden;background:#111}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 1.4s ease}
+.hero-bg.is-active{opacity:1}
 .hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.12) 35%,rgba(0,0,0,.75) 100%)}
 .hero-inner{position:relative;z-index:2;padding-bottom:120px;color:#fff;max-width:820px}
 .hero-eyebrow{display:block;font-size:13.5px;font-weight:600;letter-spacing:.04em;color:#fff;margin-bottom:18px;text-shadow:0 2px 14px rgba(0,0,0,.55)}
@@ -119,6 +120,8 @@ button{font-family:inherit;cursor:pointer}
 .page-header.simple{background:var(--bg-elevated);border-bottom:1px solid var(--line);align-items:center;padding-bottom:0;animation:none}
 .page-header.simple .kicker{color:var(--accent)}
 .page-header.simple h1{color:var(--fg)}
+.page-header-video-wrap{animation:none;background:#111}
+.page-header-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .page-header-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.15) 40%,rgba(0,0,0,.6) 100%)}
 .page-header .container{position:relative;z-index:2}
 .page-header h1{font-family:var(--font-en);font-size:38px;font-weight:700;color:#fff;letter-spacing:-.01em}

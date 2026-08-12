@@ -8,11 +8,35 @@ var CONSULT_WEBHOOK_URL = '';
 var KAKAO_CHANNEL_CHAT_URL = '';
 
 document.addEventListener('DOMContentLoaded', function () {
-  // 움직임 최소화 설정 사용자는 히어로 영상을 재생하지 않고 포스터 정지 이미지만 표시
-  var heroVideo = document.getElementById('heroVideo');
-  if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    heroVideo.pause();
-    heroVideo.removeAttribute('autoplay');
+  var reduceMotionPref = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 움직임 최소화 설정 사용자는 배경 영상을 재생하지 않고 포스터 정지 이미지만 표시
+  var autoplayVideos = document.querySelectorAll('.hero-bg, .page-header-video');
+  if (reduceMotionPref) {
+    autoplayVideos.forEach(function (v) {
+      v.pause();
+      v.removeAttribute('autoplay');
+    });
+  }
+
+  // 히어로 배경 영상 2종(주간/노을) 크로스페이드 전환
+  var heroVideoA = document.getElementById('heroVideoA');
+  var heroVideoB = document.getElementById('heroVideoB');
+  if (heroVideoA && heroVideoB && !reduceMotionPref) {
+    var current = heroVideoA;
+    var next = heroVideoB;
+    function swapHeroVideo() {
+      next.currentTime = 0;
+      next.play();
+      next.classList.add('is-active');
+      current.classList.remove('is-active');
+      var prevCurrent = current;
+      current = next;
+      next = prevCurrent;
+      current.removeEventListener('ended', swapHeroVideo);
+      current.addEventListener('ended', swapHeroVideo);
+    }
+    heroVideoA.addEventListener('ended', swapHeroVideo);
   }
 
   var kakaoBtn = document.getElementById('kakaoFloat');
