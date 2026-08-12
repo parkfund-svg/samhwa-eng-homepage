@@ -122,6 +122,28 @@ document.addEventListener('DOMContentLoaded', function () {
     io.observe(el);
   });
 
+  // 카드 그리드 순차(스태거) 등장 효과
+  var staggerGroups = document.querySelectorAll('[data-reveal-stagger]');
+  var stIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      Array.prototype.forEach.call(e.target.children, function (child, i) {
+        child.style.transitionDelay = Math.min(i * 60, 480) + 'ms';
+        child.style.opacity = 1;
+        child.style.transform = 'none';
+      });
+      stIo.unobserve(e.target);
+    });
+  }, { threshold: 0.1 });
+  staggerGroups.forEach(function (group) {
+    Array.prototype.forEach.call(group.children, function (child) {
+      child.style.opacity = 0;
+      child.style.transform = 'translateY(28px)';
+      child.style.transition = 'opacity .55s ease, transform .55s ease';
+    });
+    stIo.observe(group);
+  });
+
   initCountUp();
 });
 
