@@ -56,6 +56,11 @@ button{font-family:inherit;cursor:pointer}
 .site-header::before{content:"";position:absolute;inset:0;z-index:-1;background:transparent;transition:background .3s}
 .site-header.scrolled::before{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .site-header.scrolled{box-shadow:0 4px 20px rgba(10,10,10,.04)}
+.site-header.solid::before{background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-header.solid{box-shadow:0 4px 20px rgba(10,10,10,.04)}
+.site-header.solid .menu a{color:var(--fg)}
+.site-header.solid .tel-link{color:var(--fg)}
+.site-header.solid .mobile-toggle{color:var(--fg)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:84px}
 .brand{display:flex;align-items:center;gap:10px}
 .brand img{height:44px;width:auto;border-radius:8px}
@@ -64,6 +69,9 @@ button{font-family:inherit;cursor:pointer}
 .site-header.scrolled .menu a{color:var(--fg)}
 .menu a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--accent);transition:width .2s}
 .menu a:hover::after{width:100%}
+.menu a.active{color:var(--accent)}
+.site-header:not(.solid) .menu a.active{color:#fff}
+.menu a.active::after{width:100%}
 .nav-actions{display:flex;align-items:center;gap:20px}
 .tel-link{font-size:13.5px;font-weight:600;color:#fff;letter-spacing:.02em;transition:color .3s}
 .site-header.scrolled .tel-link{color:var(--fg)}
@@ -91,8 +99,24 @@ button{font-family:inherit;cursor:pointer}
 @keyframes bounceCue{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 .scroll-cue svg, .scroll-cue-inline svg{display:block}
 
+/* ---------- 서브페이지 상단 배너 ---------- */
+.page-header{position:relative;height:340px;display:flex;align-items:flex-end;padding-bottom:52px;background-size:cover;background-position:center;overflow:hidden}
+.page-header.simple{background:var(--bg-elevated);border-bottom:1px solid var(--line);align-items:center;padding-bottom:0}
+.page-header.simple .kicker{color:var(--accent)}
+.page-header.simple h1{color:var(--fg)}
+.page-header-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.15) 40%,rgba(0,0,0,.6) 100%)}
+.page-header .container{position:relative;z-index:2}
+.page-header h1{font-family:var(--font-en);font-size:38px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.kicker.light{color:rgba(255,255,255,.75)}
+
+/* ---------- 인덱스 티저 ---------- */
+.teaser{padding:120px 0}
+.teaser-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:70px;align-items:center}
+.teaser-grid p{color:var(--muted);font-size:15.5px;line-height:1.9}
+.teaser-grid .text-link{margin-top:26px}
+
 /* ---------- 회사소개 (에디토리얼) ---------- */
-.about-intro{padding:150px 0 0}
+.about-intro{padding:90px 0 0}
 .about-intro-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:70px;align-items:start}
 .about-intro-grid > div:first-child p{margin-top:20px;color:var(--muted);font-size:15.5px;line-height:1.9}
 .brand-line{font-family:var(--font-en);font-size:34px;font-weight:700;color:var(--accent);letter-spacing:-.01em}
