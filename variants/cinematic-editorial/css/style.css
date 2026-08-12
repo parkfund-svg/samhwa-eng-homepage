@@ -167,13 +167,30 @@ button{font-family:inherit;cursor:pointer}
 .tl-year{flex:0 0 90px;font-family:var(--font-en);font-size:18px;font-weight:700;color:var(--accent)}
 .tl-item p{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* ---------- 사업분야 ---------- */
+/* ---------- 사업분야: 3대 핵심사업 ---------- */
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:64px}
+.pillar-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#14161d 0%,#0a0a0a 100%);padding:52px 34px 44px;text-align:center;box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 30px 50px -20px rgba(0,0,0,.5);transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s}
+.pillar-card::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:220px;height:220px;background:radial-gradient(circle, rgba(70,110,230,.35) 0%, rgba(70,110,230,0) 70%);pointer-events:none;transition:opacity .35s}
+.pillar-card:hover{transform:translateY(-10px);box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 44px 70px -22px rgba(0,0,0,.65)}
+.pillar-card:hover::before{opacity:1.4}
+.pillar-icon{position:relative;color:#8fa4f2;filter:drop-shadow(0 0 14px rgba(90,120,230,.55))}
+.pillar-en{position:relative;display:block;margin-top:22px;font-family:var(--font-en);font-size:11.5px;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.45)}
+.pillar-kr{position:relative;margin-top:10px;font-size:32px;font-weight:800;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 0 rgba(0,0,0,.4), 0 18px 30px rgba(0,0,0,.5)}
+.pillar-card p{position:relative;margin-top:14px;font-size:13px;line-height:1.75;color:rgba(255,255,255,.55);max-width:230px;margin-left:auto;margin-right:auto}
+
+.biz-subhead{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.biz-subhead span{font-family:var(--font-en);font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--muted-2);white-space:nowrap}
+.biz-subhead::after{content:"";flex:1;height:1px;background:var(--line-strong)}
+
+/* ---------- 사업분야: 세부 공종 ---------- */
 .biz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong)}
-.biz-card{background:var(--bg-card);padding:38px 28px;position:relative;transition:background .2s, transform .25s, box-shadow .25s;z-index:1}
-.biz-card:hover{background:var(--bg-elevated);transform:translateY(-6px);box-shadow:0 20px 34px rgba(10,10,10,.08);z-index:2}
-.biz-num{font-family:var(--font-en);font-size:13px;font-weight:700;color:var(--muted-2);transition:color .25s}
-.biz-card:hover .biz-num{color:var(--accent)}
-.biz-card h4{margin-top:18px;font-size:16px;font-weight:700;color:var(--fg)}
+.biz-card{background:var(--bg-card);padding:38px 28px;position:relative;overflow:hidden;transition:background .2s, transform .25s, box-shadow .25s;z-index:1}
+.biz-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#6a86e8);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.biz-card:hover::before{transform:scaleX(1)}
+.biz-card:hover{background:var(--bg-elevated);transform:translateY(-6px);box-shadow:0 24px 40px -12px rgba(10,10,10,.16);z-index:2}
+.biz-num{position:relative;display:inline-block;font-family:var(--font-en);font-size:32px;font-weight:800;color:var(--muted-2);text-shadow:1px 1px 0 rgba(255,255,255,.7);transition:color .25s, text-shadow .25s}
+.biz-card:hover .biz-num{color:var(--accent);text-shadow:0 4px 16px rgba(2,23,123,.25)}
+.biz-card h4{margin-top:14px;font-size:16px;font-weight:700;color:var(--fg)}
 .biz-card p{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
 
 /* ---------- 면허/인증 ---------- */
@@ -299,6 +316,7 @@ tbody tr:hover{background:var(--accent-soft)}
   .value-row.reverse .value-photo{order:2}
   .value-copy{padding:36px 0}
   .biz-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
+  .pillar-grid{grid-template-columns:1fr}
   .pf-grid{grid-template-columns:repeat(2,1fr)}
   .loc-grid{grid-template-columns:1fr}
   .finance-strip{grid-template-columns:repeat(2,1fr)}
