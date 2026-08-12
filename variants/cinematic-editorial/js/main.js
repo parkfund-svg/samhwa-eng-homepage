@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(function (el) {
     el.style.opacity = 0;
     el.style.transform = 'translateY(24px)';
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       stIo.unobserve(e.target);
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
   staggerGroups.forEach(function (group) {
     Array.prototype.forEach.call(group.children, function (child) {
       child.style.opacity = 0;
