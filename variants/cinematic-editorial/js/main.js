@@ -8,6 +8,13 @@ var CONSULT_WEBHOOK_URL = '';
 var KAKAO_CHANNEL_CHAT_URL = '';
 
 document.addEventListener('DOMContentLoaded', function () {
+  // 움직임 최소화 설정 사용자는 히어로 영상을 재생하지 않고 포스터 정지 이미지만 표시
+  var heroVideo = document.getElementById('heroVideo');
+  if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVideo.pause();
+    heroVideo.removeAttribute('autoplay');
+  }
+
   var kakaoBtn = document.getElementById('kakaoFloat');
   if (kakaoBtn && KAKAO_CHANNEL_CHAT_URL) {
     kakaoBtn.href = KAKAO_CHANNEL_CHAT_URL;
